@@ -1,0 +1,80 @@
+version = "0.0.0"
+
+import groovy.json.JsonSlurper
+import groovy.json.JsonBuilder
+
+import java.util.zip.ZipFile
+
+repositories {
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "CurseForge"
+                url = "https://cursemaven.com"
+            }
+        }
+        filter {
+            includeGroup "curse.maven"
+        }
+    }
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "Modrinth"
+                url = "https://api.modrinth.com/maven"
+            }
+        }
+        filter {
+            includeGroup "maven.modrinth"
+        }
+    }
+}
+
+configurations {
+    mods {
+        transitive = false
+    }
+}
+
+file("mods").eachFile {
+    def json = new JsonSlurper().parseText(it.text)
+    dependencies.mods json.maven
+}
+
+tasks.register("fabricModJson") {
+    def output = layout.buildDirectory.file("fabric.mod.json")
+    outputs.file output
+
+    def mods = configurations.mods
+    inputs.files mods
+
+    doLast {
+        def modFileNames = mods.files.collect { it.name }
+        def modIds = mods.files.collect {
+            ZipFile zip = new ZipFile(it)
+            def entry = zip.getEntry("fabric.mod.json")
+            def json = new JsonSlurper().parse(zip.getInputStream(entry))
+            json.id
+        }
+
+        def fmj = [
+            "schemaVersion": 1,
+            "id": "holiday-server-pack",
+            "version": version,
+            "name": "Holiday Server Pack",
+            "description": "Fabric holiday server pack",
+            "depends": modIds.collectEntries { [(it): "*"] },
+            "jars": modFileNames
+        ]
+        output.get().asFile.text = new JsonBuilder(fmj).toPrettyString()
+    }
+}
+
+tasks.register("jar", Jar) {
+    from configurations.mods
+    from fabricModJson
+
+    archiveBaseName = "holiday-server-pack"
+    archiveVersion = version
+    destinationDirectory = layout.buildDirectory.dir("libs")
+}
