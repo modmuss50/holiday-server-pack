@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "id": "holiday-server-pack-test",
+  "version": "1.0.0",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "test.TestEntrypoint"
+    ]
+  }
+}

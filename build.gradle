@@ -1,4 +1,8 @@
-version = "0.0.0"
+plugins {
+    id 'fabric-loom' version '1.9-SNAPSHOT' apply false
+}
+
+version = project.version
 
 import groovy.json.JsonSlurper
 import groovy.json.JsonBuilder
@@ -64,8 +68,12 @@ tasks.register("fabricModJson") {
             "name": "Holiday Server Pack",
             "description": "Fabric holiday server pack",
             "depends": modIds.collectEntries { [(it): "*"] },
-            "jars": modFileNames
+            "jars": modFileNames.collect { ["file": it] }
         ]
+
+        fmj.depends.put("fabric-loader", ">=${project.loader_version}")
+        fmj.depends.put("minecraft", "${project.minecraft_version}")
+
         output.get().asFile.text = new JsonBuilder(fmj).toPrettyString()
     }
 }

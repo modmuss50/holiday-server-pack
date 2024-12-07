@@ -1,0 +1,55 @@
+apply plugin: "fabric-loom"
+
+configurations {
+    productionRuntimeServer
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    mappings "net.fabricmc:yarn:1.21.4+build.1:v2"
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    modCompileOnly "net.fabricmc.fabric-api:fabric-api:0.111.0+1.21.4"
+
+    productionRuntimeServer "net.fabricmc:fabric-installer:${project.installer_version}:server"
+}
+
+// Only use the production server run task
+loom.runs.removeAll { true }
+
+// Copied from FabricAPI's build.gradle
+tasks.register('serverPropertiesJar', Jar) {
+    def propsFile = file("build/tmp/install.properties")
+
+    doFirst {
+        propsFile.text = """\
+						fabric-loader-version=${project.loader_version}
+						game-version=${project.minecraft_version}
+						""".stripMargin().stripIndent()
+    }
+
+    archiveFileName = "test-server-properties.jar"
+    destinationDirectory = file("build/tmp")
+    from(propsFile)
+}
+
+tasks.register('runProductionAutoTestServer', JavaExec) {
+    def jarTask = project(":").tasks.named("jar")
+
+    dependsOn serverPropertiesJar
+    dependsOn jarTask
+    dependsOn remapJar
+    classpath.from configurations.productionRuntimeServer, serverPropertiesJar
+    mainClass = "net.fabricmc.installer.ServerLauncher"
+    workingDir = file("run")
+
+    doFirst {
+        workingDir.mkdirs()
+
+        jvmArgs(
+                "-Dfabric.addMods=${jarTask.get().archiveFile.get().asFile.absolutePath}${File.pathSeparator}${remapJar.archiveFile.get().asFile.absolutePath}",
+                "-Dfabric.autoTest",
+        )
+
+        args("nogui")
+    }
+}
