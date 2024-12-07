@@ -76,7 +76,7 @@ tasks.register("fabricModJson") {
             "jars": modFileNames.collect { ["file": it] }
         ]
 
-        fmj.depends.put("fabric-loader", ">=${project.loader_version}")
+        fmj.depends.put("fabricloader", ">=${project.loader_version}")
         fmj.depends.put("minecraft", "${project.minecraft_version}")
 
         output.get().asFile.text = new JsonBuilder(fmj).toPrettyString()
