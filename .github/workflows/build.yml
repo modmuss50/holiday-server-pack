@@ -17,10 +17,10 @@ jobs:
       - name: make gradle wrapper executable
         run: chmod +x ./gradlew
       - name: build
-        run: ./gradlew :jar
+        run: ./gradlew :jar --stacktrace
       - run: mkdir test/run && echo "eula=true" >> test/run/eula.txt
       - name: test
-        run: ./gradlew :test:runProductionAutoTestServer
+        run: ./gradlew :test:runProductionAutoTestServer --stacktrace
       - name: capture build artifacts
         uses: actions/upload-artifact@v4
         with:
