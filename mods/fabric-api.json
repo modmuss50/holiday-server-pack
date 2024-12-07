@@ -1,3 +1,4 @@
 {
-  "maven": "curse.maven:fabric-api-306612:5966280"
+  "maven": "curse.maven:fabric-api-306612:5966280",
+  "supportContact": "https://github.com/FabricMC/fabric/issues"
 }

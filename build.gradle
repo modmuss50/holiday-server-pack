@@ -42,6 +42,11 @@ configurations {
 
 file("mods").eachFile {
     def json = new JsonSlurper().parseText(it.text)
+
+    if (json.supportContact == null) {
+        throw new GradleException("Mod ${it.name} has no \"supportContact\" field")
+    }
+
     dependencies.mods json.maven
 }
 
