@@ -62,6 +62,11 @@ tasks.register("fabricModJson") {
         def modIds = mods.files.collect {
             ZipFile zip = new ZipFile(it)
             def entry = zip.getEntry("fabric.mod.json")
+
+            if (entry == null) {
+                throw new GradleException("Mod ${it.name} has no fabric.mod.json")
+            }
+
             def json = new JsonSlurper().parse(zip.getInputStream(entry))
             json.id
         }
