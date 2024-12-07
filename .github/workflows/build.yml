@@ -18,6 +18,7 @@ jobs:
         run: chmod +x ./gradlew
       - name: build
         run: ./gradlew :jar
+      - run: mkdir run && echo "eula=true" >> test/run/eula.txt
       - name: test
         run: ./gradlew :test:runProductionAutoTestServer
       - name: capture build artifacts
