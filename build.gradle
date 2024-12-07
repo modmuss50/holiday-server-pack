@@ -32,17 +32,6 @@ repositories {
             includeGroup "maven.modrinth"
         }
     }
-    exclusiveContent {
-        forRepository {
-            maven {
-                name = "mschae23"
-                url = "https://mschae23.de/git/api/packages/mschae23/maven"
-            }
-        }
-        filter {
-            includeGroup "de.mschae23.minecraft.mod"
-        }
-    }
 }
 
 configurations {

@@ -1,4 +1,4 @@
 {
-  "maven": "de.mschae23.minecraft.mod:grind-enchantments:4.0.0+1.21.4",
+  "maven": "maven.modrinth:grind-enchantments:4.0.0+1.21.4-rc3",
   "supportContact": "https://github.com/mschae23/grind-enchantments/issues"
 }
