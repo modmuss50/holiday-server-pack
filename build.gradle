@@ -38,16 +38,36 @@ configurations {
     mods {
         transitive = false
     }
+    curseForgeMods {
+        transitive = false
+    }
 }
 
-file("mods").eachFile {
-    def json = new JsonSlurper().parseText(it.text)
+file("mods").eachFile { mod ->
+    def json = new JsonSlurper().parseText(mod.text)
 
     if (json.supportContact == null) {
-        throw new GradleException("Mod ${it.name} has no \"supportContact\" field")
+        throw new GradleException("Mod ${mod.name} has no \"supportContact\" field")
     }
 
     dependencies.mods json.maven
+
+    if (json.maven.startsWith("maven.modrinth")) {
+        def name = mod.name.replace(".json", "").split("-").collect { it.capitalize() }.join("")
+
+        def file = project.configurations.detachedConfiguration(
+            project.dependencies.create(json.maven)
+        )
+
+        def fileInfo = tasks.register("modrithFileInfo${name}", ModrinthFileInfoTask) {
+            input = file
+            output = layout.buildDirectory.file("modrinth/${mod.name}")
+        }
+    } else if (json.maven.startsWith("curse.maven")) {
+        dependencies.curseForgeMods json.maven
+    } else {
+        throw new GradleException("Mod ${mod.name} has an invalid \"maven\" field")
+    }
 }
 
 tasks.register("fabricModJson") {
@@ -94,5 +114,67 @@ tasks.register("jar", Jar) {
 
     archiveBaseName = "holiday-server-pack"
     archiveVersion = version
+    destinationDirectory = layout.buildDirectory.dir("libs")
+}
+
+tasks.register("modrinthPackIndex") {
+    def modrinthMods = tasks.withType(ModrinthFileInfoTask).collect { it.output }
+    inputs.files modrinthMods
+
+    def output = layout.buildDirectory.file("modrinth/modrinth.index.json")
+    outputs.file output
+
+    group = "modrinth"
+
+    doLast {
+        def mpi = [
+            "formatVersion": 1,
+            "game": "minecraft",
+            "versionId": version,
+            "name": "Holiday Server Pack",
+            "dependencies": [
+                "minecraft": "${project.minecraft_version}",
+                "fabric-loader": "${project.loader_version}"
+            ],
+            "files": modrinthMods.collect {
+                def info = new JsonSlurper().parse(it.asFile.get())
+                def file = info.files[0]
+                [
+                    "path": "mods/" + file.filename,
+                    "hashes": file.hashes,
+                    "downloads": [
+                        file.url
+                    ],
+                    "fileSize": file.size
+                ]
+            }
+        ]
+
+        output.get().asFile.text = new JsonBuilder(mpi).toPrettyString()
+    }
+}
+
+tasks.register("overrides", Sync) {
+    into "build/modrinth/overrides"
+
+    group = "modrinth"
+
+    // Copy all the curse forge mods into mods/
+    from(configurations.curseForgeMods) {
+        into "mods"
+    }
+}
+
+tasks.register("mrpack", Zip) {
+    from modrinthPackIndex
+    from (overrides) {
+        into "overrides"
+    }
+
+    group = "modrinth"
+
+    archiveBaseName = "holiday-server-pack"
+    archiveVersion = version
+    archiveExtension = "mrpack"
     destinationDirectory = layout.buildDirectory.dir("libs")
 }

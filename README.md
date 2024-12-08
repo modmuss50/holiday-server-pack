@@ -32,3 +32,11 @@ CurseForge example: `curse.maven:fabric-api-306612:5966280`
 Modrinth example: `maven.modrinth:fabric-language-kotlin:1.13.0+kotlin.2.1.0`
 
 See the full docs here https://cursemaven.com/ and https://support.modrinth.com/en/articles/8801191-modrinth-maven
+
+### Building and testing the mod pack
+
+To build a fat jar containing all of the mods run `./gradlew :jar`. This will create a jar file in `build/libs` that can be placed in the mods folder.
+
+To build a Modrinth modpack file run `./gradlew :mrpack`. This will create a mrpack file in `build/modrinth` that can be imported into supported launchers.
+
+To run a test server with the mod pack run `./gradlew :test:runProductionAutoTestServer`.

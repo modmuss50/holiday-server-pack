@@ -5,3 +5,6 @@ build
 test/.gradle
 test/build
 test/run
+
+buildSrc/.gradle
+buildSrc/build
