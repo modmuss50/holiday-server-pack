@@ -10,8 +10,6 @@ If you aren't a mod developer, or a developer who thinks that a third party mod 
 
 If your mod does not play well with other mods or is a total conversion, it may be best to not submit it this time around.
 
-Please refrain from adding client side only mods, players are free to add these mods to their own clients.
-
 Any mods added must have a license that allows for redistribution.
 
 ### Submitting a mod
