@@ -9,27 +9,29 @@ import groovy.json.JsonBuilder
 
 import java.util.zip.ZipFile
 
-repositories {
-    exclusiveContent {
-        forRepository {
-            maven {
-                name = "CurseForge"
-                url = "https://cursemaven.com"
+allprojects {
+    repositories {
+        exclusiveContent {
+            forRepository {
+                maven {
+                    name = "CurseForge"
+                    url = "https://cursemaven.com"
+                }
+            }
+            filter {
+                includeGroup "curse.maven"
             }
         }
-        filter {
-            includeGroup "curse.maven"
-        }
-    }
-    exclusiveContent {
-        forRepository {
-            maven {
-                name = "Modrinth"
-                url = "https://api.modrinth.com/maven"
+        exclusiveContent {
+            forRepository {
+                maven {
+                    name = "Modrinth"
+                    url = "https://api.modrinth.com/maven"
+                }
             }
-        }
-        filter {
-            includeGroup "maven.modrinth"
+            filter {
+                includeGroup "maven.modrinth"
+            }
         }
     }
 }

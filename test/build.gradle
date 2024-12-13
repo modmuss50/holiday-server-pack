@@ -1,7 +1,10 @@
+import groovy.json.JsonSlurper
+
 apply plugin: "fabric-loom"
 
 configurations {
     productionRuntimeServer
+    mods
 }
 
 dependencies {
@@ -11,10 +14,19 @@ dependencies {
     modCompileOnly "net.fabricmc.fabric-api:fabric-api:0.111.0+1.21.4"
 
     productionRuntimeServer "net.fabricmc:fabric-installer:${project.installer_version}:server"
+
+    rootProject.file("mods").eachFile { mod ->
+        def json = new JsonSlurper().parseText(mod.text)
+        mods json.maven
+    }
 }
 
-// Only use the production server run task
-loom.runs.removeAll { true }
+tasks.withType(net.fabricmc.loom.task.AbstractRunTask).configureEach { task ->
+    task.inputs.files(configurations.productionRuntimeServer)
+    task.jvmArgs(
+        "-Dfabric.addMods=${configurations.mods.collect { it.absolutePath }.join(File.pathSeparator)}"
+    )
+}
 
 // Copied from FabricAPI's build.gradle
 tasks.register('serverPropertiesJar', Jar) {
