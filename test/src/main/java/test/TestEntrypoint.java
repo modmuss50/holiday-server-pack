@@ -1,14 +1,14 @@
 package test;
 
-import net.fabricmc.api.ModInitializer;
+import net.fabricmc.api.DedicatedServerModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import org.spongepowered.asm.mixin.MixinEnvironment;
 
-public class TestEntrypoint implements ModInitializer {
+public class TestEntrypoint implements DedicatedServerModInitializer {
     private int ticks = 0;
 
     @Override
-    public void onInitialize() {
+    public void onInitializeServer() {
         ServerTickEvents.END_SERVER_TICK.register(server -> {
             ticks++;
 
