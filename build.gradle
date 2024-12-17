@@ -2,7 +2,7 @@ plugins {
     id 'fabric-loom' version '1.9-SNAPSHOT' apply false
 }
 
-version = providers.environmentVariable("GITHUB_RUN_ID").getOrElse("0")
+version = providers.environmentVariable("GITHUB_RUN_NUMBER").getOrElse("0")
 
 import groovy.json.JsonSlurper
 import groovy.json.JsonBuilder
