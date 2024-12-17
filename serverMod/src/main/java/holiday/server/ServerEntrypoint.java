@@ -13,6 +13,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.List;
 
 public class ServerEntrypoint implements DedicatedServerModInitializer {
     private static final Logger LOGGER = LoggerFactory.getLogger(ServerEntrypoint.class);
@@ -36,7 +37,8 @@ public class ServerEntrypoint implements DedicatedServerModInitializer {
     private static void announceJoin(ServerPlayerEntity player, String webookUrl) {
         var webhook = new Webhook(
                 "Fabric Holiday Server",
-                player.getName().getString() + " joined the server"
+                player.getName().getString() + " joined the server",
+                Webhook.AllowedMentions.NONE
         );
         String json = GSON.toJson(webhook);
 
@@ -56,6 +58,11 @@ public class ServerEntrypoint implements DedicatedServerModInitializer {
     // https://discord.com/developers/docs/resources/webhook#execute-webhook
     private record Webhook(
         String username,
-        String content
-    ) {}
+        String content,
+        AllowedMentions allowed_mentions
+    ) {
+        private record AllowedMentions(List<Object> parse) {
+            private static final AllowedMentions NONE = new AllowedMentions(List.of());
+        }
+    }
 }
