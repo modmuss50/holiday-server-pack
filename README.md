@@ -38,3 +38,7 @@ To build a fat jar containing all of the mods run `./gradlew :jar`. This will cr
 To build a Modrinth modpack file run `./gradlew :mrpack`. This will create a mrpack file in `build/modrinth` that can be imported into supported launchers.
 
 To run a test server with the mod pack run `./gradlew :test:runProductionAutoTestServer`.
+
+### License
+
+The code in this repository is licensed under the MIT license. See [LICENSE](LICENSE) for more information.
