@@ -31,6 +31,10 @@ public class ServerEntrypoint implements DedicatedServerModInitializer {
             throw new UncheckedIOException(e);
         }
 
+        if (config.discordWebhookUrl().isBlank()) {
+            return;
+        }
+
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> announce(handler.player, handler.player.getName().getString() + " joined the server", config.discordWebhookUrl()));
         ServerPlayConnectionEvents.DISCONNECT.register((handler, server) -> announce(handler.player, handler.player.getName().getString() + " left the server", config.discordWebhookUrl()));
     }

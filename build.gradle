@@ -2,7 +2,7 @@ plugins {
     id 'fabric-loom' version '1.9-SNAPSHOT' apply false
 }
 
-version = project.version
+version = providers.environmentVariable("GITHUB_RUN_ID").getOrElse("0")
 
 import groovy.json.JsonSlurper
 import groovy.json.JsonBuilder
@@ -40,7 +40,7 @@ configurations {
     mods {
         transitive = false
     }
-    curseForgeMods {
+    mrOverridesMods {
         transitive = false
     }
 }
@@ -66,14 +66,15 @@ file("mods").eachFile { mod ->
             output = layout.buildDirectory.file("modrinth/${mod.name}")
         }
     } else if (json.maven.startsWith("curse.maven")) {
-        dependencies.curseForgeMods json.maven
+        dependencies.mrOverridesMods json.maven
     } else {
         throw new GradleException("Mod ${mod.name} has an invalid \"maven\" field")
     }
 }
 
 dependencies {
-    mods project("serverMod")
+    mods project("mod")
+    mrOverridesMods project("mod")
 }
 
 tasks.register("fabricModJson") {
@@ -166,7 +167,7 @@ tasks.register("overrides", Sync) {
     group = "modrinth"
 
     // Copy all the curse forge mods into mods/
-    from(configurations.curseForgeMods) {
+    from(configurations.mrOverridesMods) {
         into "mods"
     }
 }
@@ -183,4 +184,10 @@ tasks.register("mrpack", Zip) {
     archiveVersion = version
     archiveExtension = "mrpack"
     destinationDirectory = layout.buildDirectory.dir("libs")
+}
+
+tasks.register("build") {
+    dependsOn "mrpack"
+    dependsOn "jar"
+    group = "build"
 }

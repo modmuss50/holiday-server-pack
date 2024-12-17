@@ -20,7 +20,7 @@ public record Config(
         }
 
         var config = new Config(
-            get(properties, "discordWebhookUrl", "https://discord.com/api/webhooks/EXAMPLE/EXAMPLE")
+            get(properties, "discordWebhookUrl", "")
         );
 
         try (OutputStream os = Files.newOutputStream(path)) {
