@@ -12,3 +12,4 @@ pluginManagement {
 rootProject.name = 'holiday-server-pack'
 
 include("test")
+include("serverMod")

@@ -72,6 +72,10 @@ file("mods").eachFile { mod ->
     }
 }
 
+dependencies {
+    mods project("serverMod")
+}
+
 tasks.register("fabricModJson") {
     def output = layout.buildDirectory.file("fabric.mod.json")
     outputs.file output
