@@ -8,3 +8,7 @@ test/run
 
 buildSrc/.gradle
 buildSrc/build
+
+serverMod/.gradle
+serverMod/build
+serverMod/run
