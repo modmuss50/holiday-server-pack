@@ -31,13 +31,15 @@ public class ServerEntrypoint implements DedicatedServerModInitializer {
             throw new UncheckedIOException(e);
         }
 
-        ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> announceJoin(handler.player, config.discordWebhookUrl()));
+        ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> announce(handler.player, handler.player.getName().getString() + " joined the server", config.discordWebhookUrl()));
+        ServerPlayConnectionEvents.DISCONNECT.register((handler, server) -> announce(handler.player, handler.player.getName().getString() + " left the server", config.discordWebhookUrl()));
     }
 
-    private static void announceJoin(ServerPlayerEntity player, String webookUrl) {
+    private static void announce(ServerPlayerEntity player, String message, String webookUrl) {
         var webhook = new Webhook(
                 "Fabric Holiday Server",
-                player.getName().getString() + " joined the server",
+                message,
+                getAvatarUrl(player),
                 Webhook.AllowedMentions.NONE
         );
         String json = GSON.toJson(webhook);
@@ -55,10 +57,15 @@ public class ServerEntrypoint implements DedicatedServerModInitializer {
                 });
     }
 
+    private static String getAvatarUrl(ServerPlayerEntity player) {
+        return "https://mc-heads.net/head/" + player.getUuidAsString();
+    }
+
     // https://discord.com/developers/docs/resources/webhook#execute-webhook
     private record Webhook(
         String username,
         String content,
+        String avatar_url,
         AllowedMentions allowed_mentions
     ) {
         private record AllowedMentions(List<Object> parse) {
