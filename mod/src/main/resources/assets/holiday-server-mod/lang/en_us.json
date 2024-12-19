@@ -1,0 +1,20 @@
+{
+  "block.holiday-server-mod.banner.fabric": "Fabric",
+  "block.holiday-server-mod.banner.fabric.black": "Black Fabric",
+  "block.holiday-server-mod.banner.fabric.blue": "Blue Fabric",
+  "block.holiday-server-mod.banner.fabric.brown": "Brown Fabric",
+  "block.holiday-server-mod.banner.fabric.cyan": "Cyan Fabric",
+  "block.holiday-server-mod.banner.fabric.gray": "Gray Fabric",
+  "block.holiday-server-mod.banner.fabric.green": "Green Fabric",
+  "block.holiday-server-mod.banner.fabric.light_blue": "Light Blue Fabric",
+  "block.holiday-server-mod.banner.fabric.light_gray": "Light Gray Fabric",
+  "block.holiday-server-mod.banner.fabric.lime": "Lime Fabric",
+  "block.holiday-server-mod.banner.fabric.magenta": "Magenta Fabric",
+  "block.holiday-server-mod.banner.fabric.orange": "Orange Fabric",
+  "block.holiday-server-mod.banner.fabric.pink": "Pink Fabric",
+  "block.holiday-server-mod.banner.fabric.purple": "Purple Fabric",
+  "block.holiday-server-mod.banner.fabric.red": "Red Fabric",
+  "block.holiday-server-mod.banner.fabric.white": "White Fabric",
+  "block.holiday-server-mod.banner.fabric.yellow": "Yellow Fabric",
+  "item.holiday-server-mod.fabric_banner_pattern": "Fabric Banner Pattern"
+}

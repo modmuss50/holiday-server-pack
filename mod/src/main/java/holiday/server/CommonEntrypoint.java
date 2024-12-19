@@ -35,6 +35,8 @@ public class CommonEntrypoint implements ModInitializer {
         PayloadTypeRegistry.configurationS2C().register(RequestVersionPayload.ID, RequestVersionPayload.PACKET_CODEC);
         PayloadTypeRegistry.configurationC2S().register(VersionResponsePayload.ID, VersionResponsePayload.PACKET_CODEC);
 
+        ModItems.register();
+
         ServerConfigurationConnectionEvents.CONFIGURE.register((handler, server) -> {
             if (ServerConfigurationNetworking.canSend(handler, RequestVersionPayload.ID)) {
                 handler.addTask(new CheckVersionTask());
