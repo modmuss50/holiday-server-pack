@@ -12,44 +12,6 @@ If your mod does not play well with other mods or is a total conversion, it may 
 
 Any mods added must have a license that allows for redistribution.
 
-### What mods are in the pack?
-
-A list of mods in the pack is available here. Mods in bold were made and submitted by members of our community!
-
-- [**Alivent Messenger by A11v1r15**](https://modrinth.com/mod/alivent-messager)
-- **[Armor Stand Editor by Patbox](https://modrinth.com/mod/armorstandeditor)**
-- [**ClickThrough Plus by cassiancc**](https://modrinth.com/mod/clickthrough+)
-- [Cloth Config API by shedaniel](https://modrinth.com/mod/cloth-config)
-- [**Columns by haykam**](https://modrinth.com/mod/columns)
-- [**Creeper Healing by ArkoSammy12**](https://modrinth.com/mod/creeper-healing)
-- [**Creeper Confetti Plus by cassiancc**](https://modrinth.com/mod/creeperconfetti+)
-- [**Do A Barrel Roll by enjarai**](https://modrinth.com/mod/do-a-barrel-roll)
-- [**Ender Christmas Plus by cassiancc**](https://modrinth.com/mod/ender-christmas+)
-- [**Expanded Storage by Quinn_Semele**](https://modrinth.com/mod/expanded-storage)
-- [**Fabric API by modmuss50**](https://modrinth.com/mod/fabric-api)
-- [**Fabric Language Kotlin by modmuss50**](https://modrinth.com/mod/fabric-language-kotlin)
-- [**FlightAssistant by Octol1ttle**](https://modrinth.com/mod/flightassistant)
-- [**Grind Enchantments by mschae23**](https://modrinth.com/mod/grind-enchantments)
-- **[Holiday Server Mod by modmuss50](https://github.com/modmuss50/holiday-server-pack)**
-- [**Instant Feedback by DrexHD**](https://modrinth.com/mod/instant-feedback)
-- [MidnightLib by TeamMidnightDust](https://modrinth.com/mod/midnightlib)
-- [**More Axolotl Variants API by AkashiiKun**](https://modrinth.com/mod/mavapi)
-- [**More Axolotl Variants Mod by AkashiiKun**](https://modrinth.com/mod/mavm)
-- [**Monkey Config by ArkoSammy12**](https://modrinth.com/mod/monkey-config)
-- [owo lib by glisco03](https://modrinth.com/mod/owo-lib)
-- [**Patbox's Brewery by Patbox**](https://modrinth.com/mod/brewery)
-- [**Phantom Lucidity by haykam**](https://github.com/haykam821/Phantom-Lucidity/)
-- **[PolyDecorations by Patbox](https://modrinth.com/mod/polydecorations)**
-- **[Polymer by Patbox](https://modrinth.com/mod/polymer)**
-- [**Pyrite by cassiancc**](https://modrinth.com/mod/pyrite)
-- [**Rainbow Christmas by PoeticRainbow**](https://modrinth.com/mod/rainbow-christmas)
-- [**SleepWarp (Updated) by Patbox**](https://modrinth.com/mod/sleep-warp-updated)
-- [**Text Placeholder API by Patbox**](https://modrinth.com/mod/placeholder-api)
-- [**Unbreakable by sylenthuntress**](https://modrinth.com/mod/durability-rework)
-- [**Universal Graves by Patbox**](https://modrinth.com/mod/universal-graves)
-- [**Villager Trading Plus by cassiancc**](https://modrinth.com/mod/trading+)
-- [YACL by isxander](https://modrinth.com/mod/yacl)
-
 ### Submitting a mod
 
 Create a json file for your mod in /mods
@@ -68,6 +30,45 @@ CurseForge example: `curse.maven:fabric-api-306612:5966280`
 Modrinth example: `maven.modrinth:fabric-language-kotlin:1.13.0+kotlin.2.1.0`
 
 See the full docs here https://cursemaven.com/ and https://support.modrinth.com/en/articles/8801191-modrinth-maven
+
+### What mods are in the pack?
+
+A list of mods in the pack is available here. Mods in bold were made and submitted by members of our community!
+
+- [**Alivent Messenger by A11v1r15**](https://modrinth.com/mod/alivent-messager)
+- [**Armor Stand Editor by Patbox**](https://modrinth.com/mod/armorstandeditor)
+- [**ClickThrough Plus by cassiancc**](https://modrinth.com/mod/clickthrough+)
+- [Cloth Config API by shedaniel](https://modrinth.com/mod/cloth-config)
+- [**Columns by haykam**](https://modrinth.com/mod/columns)
+- [**Creeper Healing by ArkoSammy12**](https://modrinth.com/mod/creeper-healing)
+- [**Creeper Confetti Plus by cassiancc**](https://modrinth.com/mod/creeperconfetti+)
+- [**Do A Barrel Roll by enjarai**](https://modrinth.com/mod/do-a-barrel-roll)
+- [**Ender Christmas Plus by cassiancc**](https://modrinth.com/mod/ender-christmas+)
+- [**Expanded Storage by Quinn_Semele**](https://modrinth.com/mod/expanded-storage)
+- [**Fabric API by modmuss50**](https://modrinth.com/mod/fabric-api)
+- [**Fabric Language Kotlin by modmuss50**](https://modrinth.com/mod/fabric-language-kotlin)
+- [**FlightAssistant by Octol1ttle**](https://modrinth.com/mod/flightassistant)
+- [**Grind Enchantments by mschae23**](https://modrinth.com/mod/grind-enchantments)
+- [**Holiday Server Mod by modmuss50**](https://github.com/modmuss50/holiday-server-pack)
+- [**Instant Feedback by DrexHD**](https://modrinth.com/mod/instant-feedback)
+- [MidnightLib by TeamMidnightDust](https://modrinth.com/mod/midnightlib)
+- [**More Axolotl Variants API by AkashiiKun**](https://modrinth.com/mod/mavapi)
+- [**More Axolotl Variants Mod by AkashiiKun**](https://modrinth.com/mod/mavm)
+- [**Monkey Config by ArkoSammy12**](https://modrinth.com/mod/monkey-config)
+- [owo lib by glisco03](https://modrinth.com/mod/owo-lib)
+- [**Patbox's Brewery by Patbox**](https://modrinth.com/mod/brewery)
+- [**Phantom Lucidity by haykam**](https://github.com/haykam821/Phantom-Lucidity/)
+- [**PolyDecorations by Patbox**](https://modrinth.com/mod/polydecorations)
+- [**Polymer by Patbox**](https://modrinth.com/mod/polymer)
+- [**Pyrite by cassiancc**](https://modrinth.com/mod/pyrite)
+- [**Rainbow Christmas by PoeticRainbow**](https://modrinth.com/mod/rainbow-christmas)
+- [**SleepWarp (Updated) by Patbox**](https://modrinth.com/mod/sleep-warp-updated)
+- [**Snow Under Trees (Fabric) by IMB11**](https://modrinth.com/mod/snow-under-trees-remastered)
+- [**Text Placeholder API by Patbox**](https://modrinth.com/mod/placeholder-api)
+- [**Unbreakable by sylenthuntress**](https://modrinth.com/mod/durability-rework)
+- [**Universal Graves by Patbox**](https://modrinth.com/mod/universal-graves)
+- [**Villager Trading Plus by cassiancc**](https://modrinth.com/mod/trading+)
+- [YACL by isxander](https://modrinth.com/mod/yacl)
 
 ### Building and testing the mod pack
 
