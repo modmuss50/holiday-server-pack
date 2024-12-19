@@ -6,6 +6,8 @@ import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.TitleScreen;
+import net.minecraft.client.network.ServerInfo;
+import net.minecraft.client.network.ServerInfo.ServerType;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
@@ -13,6 +15,8 @@ import net.minecraft.util.Util;
 import net.minecraft.util.math.random.Random;
 
 public class ClientEntrypoint implements ClientModInitializer {
+    public static final ServerInfo SERVER = new ServerInfo("Holiday Server", "mc.modmuss50.me", ServerType.OTHER);
+
     private static final Identifier SNOW_TEXTURE = Identifier.ofVanilla("textures/environment/snow.png");
 
     private static final SnowfallLayer[] layers = new SnowfallLayer[3];
