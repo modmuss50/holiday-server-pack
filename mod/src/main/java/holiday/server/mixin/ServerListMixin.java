@@ -18,7 +18,7 @@ public class ServerListMixin {
 	@Final
 	private List<ServerInfo> servers;
 
-	@Inject(method = "loadFile", at = @At("TAIL"))
+	@Inject(method = "loadFile", at = @At("RETURN"))
 	private void onFileLoaded(CallbackInfo ci) {
 		if (this.servers.isEmpty()) {
 			this.servers.add(ClientEntrypoint.SERVER);
