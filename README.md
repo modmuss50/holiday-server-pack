@@ -21,7 +21,7 @@ Create a json file for your mod in /mods
 
 ```json
 {
-  "maven": "curse.maven:fabric-api-306612:5966280",
+  "maven": "maven.modrinth:fabric-api:0.112.2+1.21.4",
   "supportContact": "https://github.com/FabricMC/fabric/issues"
 }
 ```
