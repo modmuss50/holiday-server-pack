@@ -1,0 +1,6 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "holiday-server-mod:item/fabric_banner_pattern"
+  }
+}
