@@ -34,5 +34,6 @@
   "block.holiday-server-mod.banner.tater.red": "Red Tater",
   "block.holiday-server-mod.banner.tater.white": "White Tater",
   "block.holiday-server-mod.banner.tater.yellow": "Yellow Tater",
-  "item.holiday-server-mod.tater_banner_pattern": "Tater Banner Pattern"
+  "item.holiday-server-mod.tater_banner_pattern": "Tater Banner Pattern",
+  "block.holiday-server-mod.tiny_potato": "Tiny Potato"
 }
