@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "holiday-server-mod:block/tiny_potato",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "holiday-server-mod:block/tiny_potato"
+    },
+    "facing=south": {
+      "model": "holiday-server-mod:block/tiny_potato",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "holiday-server-mod:block/tiny_potato",
+      "y": 270
+    }
+  }
+}

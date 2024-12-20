@@ -1,0 +1,90 @@
+{
+  "ambientocclusion": false,
+  "parent": "minecraft:block/block",
+  "display": {
+    "head": {
+      "translation": [
+        0,
+        14.25,
+        0
+      ]
+    }
+  },
+  "textures": {
+    "front": "holiday-server-mod:block/tiny_potato_front",
+    "particle": "#top",
+    "side": "holiday-server-mod:block/tiny_potato_side",
+    "top": "holiday-server-mod:block/tiny_potato_top"
+  },
+  "elements": [
+    {
+      "from": [
+        4,
+        0,
+        4
+      ],
+      "to": [
+        12,
+        12,
+        12
+      ],
+      "faces": {
+        "down": {
+          "texture": "#top",
+          "cullface": "down",
+          "uv": [
+            0,
+            0,
+            8,
+            8
+          ]
+        },
+        "up": {
+          "texture": "#top",
+          "uv": [
+            0,
+            0,
+            8,
+            8
+          ]
+        },
+        "north": {
+          "texture": "#front",
+          "uv": [
+            0,
+            0,
+            8,
+            12
+          ]
+        },
+        "south": {
+          "texture": "#side",
+          "uv": [
+            0,
+            0,
+            8,
+            12
+          ]
+        },
+        "west": {
+          "texture": "#side",
+          "uv": [
+            0,
+            0,
+            8,
+            12
+          ]
+        },
+        "east": {
+          "texture": "#side",
+          "uv": [
+            0,
+            0,
+            8,
+            12
+          ]
+        }
+      }
+    }
+  ]
+}

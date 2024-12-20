@@ -1,5 +1,7 @@
 package holiday.server;
 
+import holiday.server.block.HolidayServerBlocks;
+import holiday.server.item.HolidayServerItems;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerConfigurationConnectionEvents;
@@ -23,8 +25,10 @@ import java.util.Optional;
 import java.util.function.Consumer;
 
 public class CommonEntrypoint implements ModInitializer {
+    private static final String MOD_ID = "holiday-server-mod";
+
     public static final String CURRENT_VERSION = FabricLoader.getInstance()
-            .getModContainer("holiday-server-mod")
+            .getModContainer(MOD_ID)
             .get()
             .getMetadata()
             .getVersion()
@@ -32,6 +36,9 @@ public class CommonEntrypoint implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        HolidayServerBlocks.register();
+        HolidayServerItems.register();
+
         PayloadTypeRegistry.configurationS2C().register(RequestVersionPayload.ID, RequestVersionPayload.PACKET_CODEC);
         PayloadTypeRegistry.configurationC2S().register(VersionResponsePayload.ID, VersionResponsePayload.PACKET_CODEC);
 
@@ -62,6 +69,10 @@ public class CommonEntrypoint implements ModInitializer {
             Optional.empty(),
             Optional.of(URI.create("https://github.com/modmuss50/holiday-server-pack/commit/%s".formatted(CURRENT_VERSION)))
         ));
+    }
+
+    public static Identifier identifier(String path) {
+        return Identifier.of(MOD_ID, path);
     }
 
     public record CheckVersionTask() implements ServerPlayerConfigurationTask {
