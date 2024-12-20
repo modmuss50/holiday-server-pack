@@ -1,0 +1,11 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        "minecraft:paper",
+        "minecraft:potato"
+    ],
+    "result": {
+        "id": "holiday-server-mod:tater_banner_pattern",
+        "count": 1
+    }
+}
