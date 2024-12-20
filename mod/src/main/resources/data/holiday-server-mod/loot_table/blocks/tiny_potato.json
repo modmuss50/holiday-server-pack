@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "holiday-server-mod:tiny_potato"
+        }
+      ],
+      "rolls": 1
+    }
+  ],
+  "random_sequence": "holiday-server-mod:blocks/tiny_potato"
+}
