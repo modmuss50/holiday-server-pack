@@ -14,9 +14,8 @@ import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 
 public class ModItems {
-    public static final TagKey<BannerPattern> FABRIC_PATTERN_ITEM_TAG = patternTagOf("pattern_item/fabric");
-    public static final Item FABRIC_PATTERN_ITEM = new BannerPatternItem(FABRIC_PATTERN_ITEM_TAG,
-            new Item.Settings().maxCount(1).registryKey(registryKeyItem("fabric_banner_pattern")));
+    public static final Item FABRIC_PATTERN_ITEM = addBannerPatternItem("fabric");
+    public static final Item TATER_PATTERN_ITEM = addBannerPatternItem("tater");
 
     private static TagKey<BannerPattern> patternTagOf(String id) {
         return TagKey.of(RegistryKeys.BANNER_PATTERN, locate(id));
@@ -30,9 +29,15 @@ public class ModItems {
         return Identifier.of("holiday-server-mod", id);
     }
 
+    public static Item addBannerPatternItem(String id) {
+        return new BannerPatternItem(patternTagOf("pattern_item/%s".formatted(id)),
+                new Item.Settings().maxCount(1).registryKey(registryKeyItem("%s_banner_pattern".formatted(id))));
+    }
+
     public static void register() {
         Registry.register(Registries.ITEM, locate("fabric_banner_pattern"), FABRIC_PATTERN_ITEM);
+        Registry.register(Registries.ITEM, locate("tater_banner_pattern"), TATER_PATTERN_ITEM);
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register((itemGroup) ->
-                itemGroup.addAfter(Items.MOJANG_BANNER_PATTERN, FABRIC_PATTERN_ITEM));
+                itemGroup.addAfter(Items.MOJANG_BANNER_PATTERN, FABRIC_PATTERN_ITEM, TATER_PATTERN_ITEM));
     }
 }
