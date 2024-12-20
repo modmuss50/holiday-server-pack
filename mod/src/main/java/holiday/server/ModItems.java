@@ -16,7 +16,7 @@ import net.minecraft.util.Identifier;
 public class ModItems {
     public static final TagKey<BannerPattern> FABRIC_PATTERN_ITEM_TAG = patternTagOf("pattern_item/fabric");
     public static final Item FABRIC_PATTERN_ITEM = new BannerPatternItem(FABRIC_PATTERN_ITEM_TAG,
-            new Item.Settings().registryKey(registryKeyItem("fabric_banner_pattern")));
+            new Item.Settings().maxCount(1).registryKey(registryKeyItem("fabric_banner_pattern")));
 
     private static TagKey<BannerPattern> patternTagOf(String id) {
         return TagKey.of(RegistryKeys.BANNER_PATTERN, locate(id));
