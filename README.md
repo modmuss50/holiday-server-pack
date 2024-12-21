@@ -57,6 +57,7 @@ A list of mods in the pack is available here. Mods in bold were made and submitt
 - [**Monkey Config by ArkoSammy12**](https://modrinth.com/mod/monkey-config)
 - [owo lib by glisco03](https://modrinth.com/mod/owo-lib)
 - [**Patbox's Brewery by Patbox**](https://modrinth.com/mod/brewery)
+- [**Phantom Pillows by haykam**](https://modrinth.com/mod/phantom-pillows)
 - [**Phantom Lucidity by haykam**](https://github.com/haykam821/Phantom-Lucidity/)
 - [**PolyDecorations by Patbox**](https://modrinth.com/mod/polydecorations)
 - [**Polymer by Patbox**](https://modrinth.com/mod/polymer)
