@@ -1,1 +1,1 @@
-{"type":"minecraft:crafting_shaped","category":"building","pattern":["###"," # ","###"],"key":{"#":"pyrite:mossy_calcite_bricks"},"result":{"id":"holiday-server-pack:mossy_calcite_brick_column","count":6}}
+{"type":"minecraft:crafting_shaped","category":"building","pattern":["###"," # ","###"],"key":{"#":"pyrite:mossy_calcite_bricks"},"result":{"id":"holiday-server-mod:mossy_calcite_brick_column","count":6}}
