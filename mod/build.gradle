@@ -11,6 +11,9 @@ dependencies {
     mappings "net.fabricmc:yarn:1.21.4+build.1:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:0.111.0+1.21.4"
+
+    modImplementation "maven.modrinth:columns:1.12.0"
+    modImplementation "maven.modrinth:pyrite:0.15.6+1.21.4"
 }
 
 processResources {

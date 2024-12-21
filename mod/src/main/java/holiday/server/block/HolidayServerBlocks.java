@@ -23,6 +23,10 @@ public final class HolidayServerBlocks {
 
     public static void register() {
         Registry.register(Registries.BLOCK_TYPE, CommonEntrypoint.identifier("tiny_potato"), TinyPotatoBlock.CODEC);
+
+        for (ColumnData column : ColumnData.COLUMNS) {
+            column.registerBlock();
+        }
     }
 
     public static Block register(String path, Function<Block.Settings, Block> factory) {
