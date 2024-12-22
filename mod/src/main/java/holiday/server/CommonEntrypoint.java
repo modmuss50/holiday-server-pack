@@ -13,6 +13,8 @@ import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.codec.PacketCodecs;
 import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.network.packet.Packet;
+import net.minecraft.resource.featuretoggle.FeatureFlags;
+import net.minecraft.resource.featuretoggle.FeatureSet;
 import net.minecraft.server.network.ServerConfigurationNetworkHandler;
 import net.minecraft.server.network.ServerPlayerConfigurationTask;
 import net.minecraft.text.MutableText;
@@ -33,6 +35,8 @@ public class CommonEntrypoint implements ModInitializer {
             .getMetadata()
             .getVersion()
             .getFriendlyString();
+
+    public static final FeatureSet FORCE_ENABLED_FEATURES = FeatureSet.of(FeatureFlags.MINECART_IMPROVEMENTS);
 
     @Override
     public void onInitialize() {
