@@ -124,6 +124,7 @@
   "block.holiday-server-mod.cut_weathered_copper_column": "Cut Weathered Copper Column",
   "block.holiday-server-mod.smooth_weathered_copper_column": "Smooth Weathered Copper Column",
   "block.holiday-server-mod.cut_oxidized_copper_column": "Cut Oxidized Copper Column",
-  "block.holiday-server-mod.smooth_oxidized_copper_column": "Smooth Oxidized Copper Column"
+  "block.holiday-server-mod.smooth_oxidized_copper_column": "Smooth Oxidized Copper Column",
+  "block.pyrite.terracotta_brick_column": "Terracotta Brick Column"
 
 }
