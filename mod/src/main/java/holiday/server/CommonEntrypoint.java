@@ -119,7 +119,7 @@ public class CommonEntrypoint implements ModInitializer {
                         WorldChunk chunk = world.getChunk(chunkPos.x, chunkPos.z);
 
                         if (Boolean.TRUE.equals(chunk.getAttached(ANIMALS_REGENERATED_CHUNK_TYPE))) {
-                            return;
+                            continue;
                         }
 
                         RegistryEntry<Biome> registryEntry = world.getBiome(chunkPos.getStartPos().withY(world.getTopYInclusive()));
