@@ -3,6 +3,8 @@
   "package": "holiday.server.mixin",
   "compatibilityLevel": "JAVA_21",
   "client": [
+    "flightassistant.AirDataComputerMixin",
+    "flightassistant.ElytraStateControllerMixin",
     "ServerListMixin"
   ],
   "injectors": {
