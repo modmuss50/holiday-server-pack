@@ -56,10 +56,11 @@ public class CommonEntrypoint implements ModInitializer {
 
     private static final AttachmentType<Boolean> ANIMALS_REGENERATED_CHUNK_TYPE = AttachmentRegistry.create(
             identifier("animals_regenerated"),
-            builder -> builder.initializer(() -> Boolean.TRUE).persistent(Codec.BOOL)
+            builder -> builder.initializer(() -> Boolean.FALSE).persistent(Codec.BOOL)
     );
 
     private static final int CHUNK_RESPAWN_RADIUS_BLOCKS = 2000;
+    private static final int SCAN_RADIUS_CHUNKS = 3;
     private static final LongSet CHECKED_CHUNKS = new LongOpenHashSet();
 
     @Override
@@ -96,16 +97,14 @@ public class CommonEntrypoint implements ModInitializer {
                 return;
             }
 
-            int playerChunkRadius = 3;
-
             for (ServerPlayerEntity player : world.getPlayers()) {
                 // We only need to fix chunks within the initial world border
                 if (player.getX() < -CHUNK_RESPAWN_RADIUS_BLOCKS || player.getX() > CHUNK_RESPAWN_RADIUS_BLOCKS || player.getZ() < -CHUNK_RESPAWN_RADIUS_BLOCKS || player.getZ()  > CHUNK_RESPAWN_RADIUS_BLOCKS) {
                     return;
                 }
 
-                for (int x = -playerChunkRadius; x < playerChunkRadius; x++) {
-                    for (int z = -playerChunkRadius; z < playerChunkRadius; z++) {
+                for (int x = -SCAN_RADIUS_CHUNKS; x < SCAN_RADIUS_CHUNKS; x++) {
+                    for (int z = -SCAN_RADIUS_CHUNKS; z < SCAN_RADIUS_CHUNKS; z++) {
                         long chunkLongPos = ChunkPos.toLong(player.getChunkPos().x + x, player.getChunkPos().z + z);
 
                         if (!world.isChunkLoaded(chunkLongPos)) {
