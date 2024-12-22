@@ -20,3 +20,7 @@ processResources {
         expand "version": project.version
     }
 }
+
+loom.runs.configureEach {
+    ideConfigGenerated = true
+}
