@@ -1,1 +1,1 @@
-{"type":"minecraft:crafting_shaped","category":"building","pattern":["###"," # ","###"],"key":{"#":"pyrite:dragon_terracotta_bricks"},"result":{"id":"holiday-server-mod:dragon_terracotta_brick_column","count":6}}
+{"type":"minecraft:crafting_shaped","category":"misc","pattern":["###"," # ","###"],"key":{"#":"pyrite:dragon_terracotta_bricks"},"result":{"id":"holiday-server-mod:dragon_terracotta_brick_column","count":6}}

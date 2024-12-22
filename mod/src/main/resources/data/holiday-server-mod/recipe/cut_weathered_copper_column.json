@@ -1,1 +1,1 @@
-{"type":"minecraft:crafting_shaped","category":"building","pattern":["###"," # ","###"],"key":{"#":"minecraft:weathered_cut_copper"},"result":{"id":"holiday-server-mod:cut_weathered_copper_column","count":6}}
+{"type":"minecraft:crafting_shaped","category":"misc","pattern":["###"," # ","###"],"key":{"#":"minecraft:weathered_cut_copper"},"result":{"id":"holiday-server-mod:cut_weathered_copper_column","count":6}}

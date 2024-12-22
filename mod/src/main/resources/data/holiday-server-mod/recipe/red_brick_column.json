@@ -1,1 +1,1 @@
-{"type":"minecraft:crafting_shaped","category":"building","pattern":["###"," # ","###"],"key":{"#":"pyrite:red_bricks"},"result":{"id":"holiday-server-mod:red_brick_column","count":6}}
+{"type":"minecraft:crafting_shaped","category":"misc","pattern":["###"," # ","###"],"key":{"#":"pyrite:red_bricks"},"result":{"id":"holiday-server-mod:red_brick_column","count":6}}

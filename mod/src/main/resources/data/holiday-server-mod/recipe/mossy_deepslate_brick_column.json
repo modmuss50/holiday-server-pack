@@ -1,1 +1,1 @@
-{"type":"minecraft:crafting_shaped","category":"building","pattern":["###"," # ","###"],"key":{"#":"pyrite:mossy_deepslate_bricks"},"result":{"id":"holiday-server-mod:mossy_deepslate_brick_column","count":6}}
+{"type":"minecraft:crafting_shaped","category":"misc","pattern":["###"," # ","###"],"key":{"#":"pyrite:mossy_deepslate_bricks"},"result":{"id":"holiday-server-mod:mossy_deepslate_brick_column","count":6}}
