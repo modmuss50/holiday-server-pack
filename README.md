@@ -45,6 +45,7 @@ A list of mods in the pack is available here. Mods in bold were made and submitt
 - [**Do A Barrel Roll by enjarai**](https://modrinth.com/mod/do-a-barrel-roll)
 - [**Ender Christmas Plus by cassiancc**](https://modrinth.com/mod/ender-christmas+)
 - [**Expanded Storage by Quinn_Semele**](https://modrinth.com/mod/expanded-storage)
+- [**Extended Drawers by MattiDragon**](https://modrinth.com/mod/extended-drawers)
 - [**Fabric API by modmuss50**](https://modrinth.com/mod/fabric-api)
 - [**Fabric Language Kotlin by modmuss50**](https://modrinth.com/mod/fabric-language-kotlin)
 - [**FlightAssistant by Octol1ttle**](https://modrinth.com/mod/flightassistant)
@@ -60,6 +61,8 @@ A list of mods in the pack is available here. Mods in bold were made and submitt
 - [**Phantom Pillows by haykam**](https://modrinth.com/mod/phantom-pillows)
 - [**Phantom Lucidity by haykam**](https://github.com/haykam821/Phantom-Lucidity/)
 - [**PolyDecorations by Patbox**](https://modrinth.com/mod/polydecorations)
+- [**Polydex by Patbox**](https://modrinth.com/mod/polydex)
+- [**PolyFactory by Patbox**](https://modrinth.com/mod/polyfactory)
 - [**Polymer by Patbox**](https://modrinth.com/mod/polymer)
 - [**Pyrite by cassiancc**](https://modrinth.com/mod/pyrite)
 - [**Rainbow Christmas by PoeticRainbow**](https://modrinth.com/mod/rainbow-christmas)
@@ -68,7 +71,6 @@ A list of mods in the pack is available here. Mods in bold were made and submitt
 - [**Text Placeholder API by Patbox**](https://modrinth.com/mod/placeholder-api)
 - [**Unbreakable by sylenthuntress**](https://modrinth.com/mod/durability-rework)
 - [**Universal Graves by Patbox**](https://modrinth.com/mod/universal-graves)
-- [**Villager Trading Plus by cassiancc**](https://modrinth.com/mod/trading+)
 - [YACL by isxander](https://modrinth.com/mod/yacl)
 
 ### Building and testing the mod pack
