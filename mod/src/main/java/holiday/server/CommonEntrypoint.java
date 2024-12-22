@@ -100,7 +100,7 @@ public class CommonEntrypoint implements ModInitializer {
             for (ServerPlayerEntity player : world.getPlayers()) {
                 // We only need to fix chunks within the initial world border
                 if (player.getX() < -CHUNK_RESPAWN_RADIUS_BLOCKS || player.getX() > CHUNK_RESPAWN_RADIUS_BLOCKS || player.getZ() < -CHUNK_RESPAWN_RADIUS_BLOCKS || player.getZ() > CHUNK_RESPAWN_RADIUS_BLOCKS) {
-                    return;
+                    continue;
                 }
 
                 for (int x = -SCAN_RADIUS_CHUNKS; x <= SCAN_RADIUS_CHUNKS; x++) {
