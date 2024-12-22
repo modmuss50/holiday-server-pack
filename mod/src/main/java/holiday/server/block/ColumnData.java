@@ -103,7 +103,7 @@ public record ColumnData(Identifier id, Block block, Item item, Block wall) {
         ColumnData.fromPyrite("smooth_weathered_copper"),
         ColumnData.fromPyrite("cut_oxidized_copper"),
         ColumnData.fromPyrite("smooth_oxidized_copper"),
-        ColumnData.fromPyrite("terracotta_brick_wall")
+        ColumnData.fromPyrite("terracotta_brick")
     };
 
     public void registerBlock() {
@@ -136,7 +136,12 @@ public record ColumnData(Identifier id, Block block, Item item, Block wall) {
     }
 
     static ColumnData fromPyrite(String path) {
-        Identifier baseId = Identifier.of("pyrite", path);
+        String blockPath;
+        if (path.contains("brick"))
+            blockPath = path+ "s";
+        else
+            blockPath = path;
+        Identifier baseId = Identifier.of("pyrite", blockPath);
         Block base = Registries.BLOCK.get(baseId);
 
         Identifier wallId = Identifier.of("pyrite", path + "_wall");
