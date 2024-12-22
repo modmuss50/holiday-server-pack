@@ -103,8 +103,8 @@ public class CommonEntrypoint implements ModInitializer {
                     return;
                 }
 
-                for (int x = -SCAN_RADIUS_CHUNKS; x < SCAN_RADIUS_CHUNKS; x++) {
-                    for (int z = -SCAN_RADIUS_CHUNKS; z < SCAN_RADIUS_CHUNKS; z++) {
+                for (int x = -SCAN_RADIUS_CHUNKS; x <= SCAN_RADIUS_CHUNKS; x++) {
+                    for (int z = -SCAN_RADIUS_CHUNKS; z <= SCAN_RADIUS_CHUNKS; z++) {
                         long chunkLongPos = ChunkPos.toLong(player.getChunkPos().x + x, player.getChunkPos().z + z);
 
                         if (!world.isChunkLoaded(chunkLongPos)) {
