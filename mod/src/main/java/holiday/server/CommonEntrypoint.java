@@ -3,6 +3,7 @@ package holiday.server;
 import holiday.server.block.HolidayServerBlocks;
 import holiday.server.item.HolidayServerItems;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerConfigurationConnectionEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerConfigurationNetworking;
@@ -21,6 +22,7 @@ import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
+import net.minecraft.world.GameRules;
 
 import java.net.URI;
 import java.util.Optional;
@@ -42,6 +44,15 @@ public class CommonEntrypoint implements ModInitializer {
     public void onInitialize() {
         HolidayServerBlocks.register();
         HolidayServerItems.register();
+
+        ServerLifecycleEvents.SERVER_STARTED.register(server -> {
+            GameRules.IntRule rule = server.getGameRules().get(GameRules.MINECART_MAX_SPEED);
+
+            // Old default value is 8
+            if (rule.get() == 8) {
+                rule.set(32, server);
+            }
+        });
 
         PayloadTypeRegistry.configurationS2C().register(RequestVersionPayload.ID, RequestVersionPayload.PACKET_CODEC);
         PayloadTypeRegistry.configurationC2S().register(VersionResponsePayload.ID, VersionResponsePayload.PACKET_CODEC);
