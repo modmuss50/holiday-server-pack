@@ -36,6 +36,7 @@ See the full docs here https://cursemaven.com/ and https://support.modrinth.com/
 A list of mods in the pack is available here. Mods in bold were made and submitted by members of our community!
 
 - [**Alivent Messenger by A11v1r15**](https://modrinth.com/mod/alivent-messager)
+- [AppleSkin by squeek502](https://modrinth.com/mod/appleskin)
 - [**Armor Stand Editor by Patbox**](https://modrinth.com/mod/armorstandeditor)
 - [**ClickThrough Plus by cassiancc**](https://modrinth.com/mod/clickthrough+)
 - [Cloth Config API by shedaniel](https://modrinth.com/mod/cloth-config)
