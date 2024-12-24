@@ -52,6 +52,7 @@ A list of mods in the pack is available here. Mods in bold were made and submitt
 - [**Grind Enchantments by mschae23**](https://modrinth.com/mod/grind-enchantments)
 - [**Holiday Server Mod by modmuss50**](https://github.com/modmuss50/holiday-server-pack)
 - [**Instant Feedback by DrexHD**](https://modrinth.com/mod/instant-feedback)
+- [Leaves Us In Peace by supersaiyansubtletly](https://modrinth.com/mod/leaves-us-in-peace)
 - [MidnightLib by TeamMidnightDust](https://modrinth.com/mod/midnightlib)
 - [**More Axolotl Variants API by AkashiiKun**](https://modrinth.com/mod/mavapi)
 - [**More Axolotl Variants Mod by AkashiiKun**](https://modrinth.com/mod/mavm)
