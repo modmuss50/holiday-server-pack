@@ -92,20 +92,20 @@ public record ColumnData(Identifier id, RegistryKey<Block> base, RegistryKey<Blo
         ColumnData.fromPyrite("cut_netherite"),
         ColumnData.fromPyrite("smooth_netherite"),
         ColumnData.fromPyrite("cut_quartz"),
-        ColumnData.fromPyrite("smooth_quartz"),
+        ColumnData.fromPyrite("smooth_quartz", "minecraft:smooth_quartz"),
         ColumnData.fromPyrite("cut_amethyst"),
         ColumnData.fromPyrite("smooth_amethyst"),
         ColumnData.fromPyrite("cut_lapis"),
         ColumnData.fromPyrite("smooth_lapis"),
         ColumnData.fromPyrite("cut_redstone"),
         ColumnData.fromPyrite("smooth_redstone"),
-        ColumnData.fromPyrite("cut_copper"),
+        ColumnData.fromPyrite("cut_copper", "minecraft:cut_copper"),
         ColumnData.fromPyrite("smooth_copper"),
-        ColumnData.fromPyrite("cut_exposed_copper"),
+        ColumnData.fromPyrite("cut_exposed_copper", "minecraft:exposed_cut_copper"),
         ColumnData.fromPyrite("smooth_exposed_copper"),
-        ColumnData.fromPyrite("cut_weathered_copper"),
+        ColumnData.fromPyrite("cut_weathered_copper", "minecraft:weathered_cut_copper"),
         ColumnData.fromPyrite("smooth_weathered_copper"),
-        ColumnData.fromPyrite("cut_oxidized_copper"),
+        ColumnData.fromPyrite("cut_oxidized_copper", "minecraft:oxidized_cut_copper"),
         ColumnData.fromPyrite("smooth_oxidized_copper"),
         ColumnData.fromPyrite("terracotta_brick")
     );
@@ -148,8 +148,11 @@ public record ColumnData(Identifier id, RegistryKey<Block> base, RegistryKey<Blo
             blockPath = path+ "s";
         else
             blockPath = path;
-        Identifier baseId = Identifier.of("pyrite", blockPath);
-        RegistryKey<Block> base = RegistryKey.of(RegistryKeys.BLOCK, baseId);
+        return fromPyrite(path,"pyrite:"+ blockPath);
+    }
+
+    static ColumnData fromPyrite(String path, String baseId) {
+        RegistryKey<Block> base = RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(baseId));
 
         Identifier wallId = Identifier.of("pyrite", path + "_wall");
         RegistryKey<Block> wall = RegistryKey.of(RegistryKeys.BLOCK, wallId);
