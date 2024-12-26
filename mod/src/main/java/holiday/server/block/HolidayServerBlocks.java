@@ -1,6 +1,7 @@
 package holiday.server.block;
 
 import holiday.server.CommonEntrypoint;
+import net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback;
 import net.minecraft.block.Block;
 import net.minecraft.block.MapColor;
 import net.minecraft.registry.Registries;
@@ -18,15 +19,22 @@ public final class HolidayServerBlocks {
             .nonOpaque()
             .sounds(BlockSoundGroup.CROP)));
 
+    private static boolean lockRegistration = false;
+
     private HolidayServerBlocks() {
     }
 
     public static void register() {
         Registry.register(Registries.BLOCK_TYPE, CommonEntrypoint.identifier("tiny_potato"), TinyPotatoBlock.CODEC);
 
-        for (ColumnData column : ColumnData.COLUMNS) {
-            column.registerBlock();
-        }
+        RegistryEntryAddedCallback.allEntries(Registries.BLOCK, entry -> {
+            // Prevent the callback from being called for registrations caused by this callback
+            if (!lockRegistration) {
+                lockRegistration = true;
+                ColumnData.UNREGISTERED_COLUMNS.removeIf(ColumnData::register);
+                lockRegistration = false;
+            }
+        });
     }
 
     public static Block register(String path, Function<Block.Settings, Block> factory) {

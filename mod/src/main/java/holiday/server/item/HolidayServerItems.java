@@ -1,7 +1,6 @@
 package holiday.server.item;
 
 import holiday.server.CommonEntrypoint;
-import holiday.server.block.ColumnData;
 import holiday.server.block.HolidayServerBlocks;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.block.entity.BannerPattern;
@@ -28,16 +27,6 @@ public final class HolidayServerItems {
     }
 
     public static void register() {
-        for (ColumnData column : ColumnData.COLUMNS) {
-            column.registerItem();
-        }
-
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(entries -> {
-            for (ColumnData column : ColumnData.COLUMNS) {
-                column.modifyEntries(entries);
-            }
-        });
-
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register((itemGroup) ->
                 itemGroup.addAfter(Items.MOJANG_BANNER_PATTERN, FABRIC_PATTERN_ITEM, TATER_PATTERN_ITEM));
 

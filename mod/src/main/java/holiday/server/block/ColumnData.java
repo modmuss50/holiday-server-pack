@@ -1,19 +1,23 @@
 package holiday.server.block;
 
+import com.google.common.collect.Sets;
 import holiday.server.CommonEntrypoint;
 import io.github.haykam821.columns.block.ColumnBlock;
-import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroups;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 
-public record ColumnData(Identifier id, Block block, Item item, Block wall) {
-    public static final ColumnData[] COLUMNS = new ColumnData[] {
+import java.util.Set;
+
+public record ColumnData(Identifier id, RegistryKey<Block> base, RegistryKey<Block> wall) {
+    public static final Set<ColumnData> UNREGISTERED_COLUMNS = Sets.newHashSet(
         ColumnData.fromPyrite("white_brick"),
         ColumnData.fromPyrite("white_terracotta_brick"),
         ColumnData.fromPyrite("orange_brick"),
@@ -104,35 +108,38 @@ public record ColumnData(Identifier id, Block block, Item item, Block wall) {
         ColumnData.fromPyrite("cut_oxidized_copper"),
         ColumnData.fromPyrite("smooth_oxidized_copper"),
         ColumnData.fromPyrite("terracotta_brick")
-    };
+    );
 
-    public void registerBlock() {
-        Registry.register(Registries.BLOCK, this.id, this.block);
-    }
+    public boolean register() {
+        Block base = Registries.BLOCK.get(this.base);
+        if (base == null) return false;
 
-    public void registerItem() {
-        Registry.register(Registries.ITEM, this.id, this.item);
-    }
-
-    public void modifyEntries(FabricItemGroupEntries entries) {
-        entries.addBefore(this.wall, this.item);
-    }
-
-    static ColumnData from(String path, Block base, Block wall) {
-        Identifier id = CommonEntrypoint.identifier(path + "_column");
+        Block wall = Registries.BLOCK.get(this.wall);
+        if (wall == null) return false;
 
         Block.Settings blockSettings = Block.Settings.copy(base)
             .registryKey(RegistryKey.of(RegistryKeys.BLOCK, id));
 
         Block block = new ColumnBlock(blockSettings);
+        Registry.register(Registries.BLOCK, this.id, block);
 
         Item.Settings itemSettings = new Item.Settings()
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, id))
             .useBlockPrefixedTranslationKey();
 
         Item item = new BlockItem(block, itemSettings);
+        Registry.register(Registries.ITEM, this.id, item);
 
-        return new ColumnData(id, block, item, wall);
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(entries -> {
+            entries.addBefore(wall, item);
+        });
+
+        return true;
+    }
+
+    static ColumnData from(String path, RegistryKey<Block> base, RegistryKey<Block> wall) {
+        Identifier id = CommonEntrypoint.identifier(path + "_column");
+        return new ColumnData(id, base, wall);
     }
 
     static ColumnData fromPyrite(String path) {
@@ -142,10 +149,10 @@ public record ColumnData(Identifier id, Block block, Item item, Block wall) {
         else
             blockPath = path;
         Identifier baseId = Identifier.of("pyrite", blockPath);
-        Block base = Registries.BLOCK.get(baseId);
+        RegistryKey<Block> base = RegistryKey.of(RegistryKeys.BLOCK, baseId);
 
         Identifier wallId = Identifier.of("pyrite", path + "_wall");
-        Block wall = Registries.BLOCK.get(wallId);
+        RegistryKey<Block> wall = RegistryKey.of(RegistryKeys.BLOCK, wallId);
 
         return ColumnData.from(path, base, wall);
     }
