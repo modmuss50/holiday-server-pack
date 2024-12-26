@@ -1,1 +1,1 @@
-{"type":"minecraft:crafting_shaped","category":"misc","pattern":["###"," # ","###"],"key":{"#":"minecraft:quartz_block_bottom"},"result":{"id":"holiday-server-mod:smooth_quartz_column","count":6}}
+{"type":"minecraft:crafting_shaped","category":"misc","pattern":["###"," # ","###"],"key":{"#":"minecraft:smooth_quartz"},"result":{"id":"holiday-server-mod:smooth_quartz_column","count":6}}
