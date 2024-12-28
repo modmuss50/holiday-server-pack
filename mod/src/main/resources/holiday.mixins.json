@@ -2,9 +2,13 @@
   "required": true,
   "package": "holiday.server.mixin",
   "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "LevelStorageMixin"
+  ],
   "client": [
     "flightassistant.AirDataComputerMixin",
     "flightassistant.ElytraStateControllerMixin",
+    "ExperimentsScreenMixin",
     "ServerListMixin"
   ],
   "injectors": {

@@ -9,6 +9,7 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentType;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerConfigurationConnectionEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerConfigurationNetworking;
@@ -20,6 +21,8 @@ import net.minecraft.network.codec.PacketCodecs;
 import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.resource.featuretoggle.FeatureFlags;
+import net.minecraft.resource.featuretoggle.FeatureSet;
 import net.minecraft.server.network.ServerConfigurationNetworkHandler;
 import net.minecraft.server.network.ServerPlayerConfigurationTask;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -37,6 +40,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.WorldChunk;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import net.minecraft.world.GameRules;
 
 import java.net.URI;
 import java.util.Optional;
@@ -63,10 +67,21 @@ public class CommonEntrypoint implements ModInitializer {
     private static final int SCAN_RADIUS_CHUNKS = 3;
     private static final LongSet CHECKED_CHUNKS = new LongOpenHashSet();
 
+    public static final FeatureSet FORCE_ENABLED_FEATURES = FeatureSet.of(FeatureFlags.MINECART_IMPROVEMENTS);
+
     @Override
     public void onInitialize() {
         HolidayServerBlocks.register();
         HolidayServerItems.register();
+
+        ServerLifecycleEvents.SERVER_STARTED.register(server -> {
+            GameRules.IntRule rule = server.getGameRules().get(GameRules.MINECART_MAX_SPEED);
+
+            // Old default value is 8
+            if (rule.get() == 8) {
+                rule.set(32, server);
+            }
+        });
 
         PayloadTypeRegistry.configurationS2C().register(RequestVersionPayload.ID, RequestVersionPayload.PACKET_CODEC);
         PayloadTypeRegistry.configurationC2S().register(VersionResponsePayload.ID, VersionResponsePayload.PACKET_CODEC);
