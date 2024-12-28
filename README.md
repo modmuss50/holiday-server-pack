@@ -36,6 +36,7 @@ See the full docs here https://cursemaven.com/ and https://support.modrinth.com/
 A list of mods in the pack is available here. Mods in bold were made and submitted by members of our community!
 
 - [**Alivent Messenger by A11v1r15**](https://modrinth.com/mod/alivent-messager)
+- [AppleSkin by squeek502](https://modrinth.com/mod/appleskin)
 - [**Armor Stand Editor by Patbox**](https://modrinth.com/mod/armorstandeditor)
 - [**ClickThrough Plus by cassiancc**](https://modrinth.com/mod/clickthrough+)
 - [Cloth Config API by shedaniel](https://modrinth.com/mod/cloth-config)
@@ -45,12 +46,14 @@ A list of mods in the pack is available here. Mods in bold were made and submitt
 - [**Do A Barrel Roll by enjarai**](https://modrinth.com/mod/do-a-barrel-roll)
 - [**Ender Christmas Plus by cassiancc**](https://modrinth.com/mod/ender-christmas+)
 - [**Expanded Storage by Quinn_Semele**](https://modrinth.com/mod/expanded-storage)
+- [**Extended Drawers by MattiDragon**](https://modrinth.com/mod/extended-drawers)
 - [**Fabric API by modmuss50**](https://modrinth.com/mod/fabric-api)
 - [**Fabric Language Kotlin by modmuss50**](https://modrinth.com/mod/fabric-language-kotlin)
 - [**FlightAssistant by Octol1ttle**](https://modrinth.com/mod/flightassistant)
 - [**Grind Enchantments by mschae23**](https://modrinth.com/mod/grind-enchantments)
 - [**Holiday Server Mod by modmuss50**](https://github.com/modmuss50/holiday-server-pack)
 - [**Instant Feedback by DrexHD**](https://modrinth.com/mod/instant-feedback)
+- [Leaves Us In Peace by supersaiyansubtletly](https://modrinth.com/mod/leaves-us-in-peace)
 - [MidnightLib by TeamMidnightDust](https://modrinth.com/mod/midnightlib)
 - [**More Axolotl Variants API by AkashiiKun**](https://modrinth.com/mod/mavapi)
 - [**More Axolotl Variants Mod by AkashiiKun**](https://modrinth.com/mod/mavm)
@@ -60,6 +63,8 @@ A list of mods in the pack is available here. Mods in bold were made and submitt
 - [**Phantom Pillows by haykam**](https://modrinth.com/mod/phantom-pillows)
 - [**Phantom Lucidity by haykam**](https://github.com/haykam821/Phantom-Lucidity/)
 - [**PolyDecorations by Patbox**](https://modrinth.com/mod/polydecorations)
+- [**Polydex by Patbox**](https://modrinth.com/mod/polydex)
+- [**PolyFactory by Patbox**](https://modrinth.com/mod/polyfactory)
 - [**Polymer by Patbox**](https://modrinth.com/mod/polymer)
 - [**Pyrite by cassiancc**](https://modrinth.com/mod/pyrite)
 - [**Rainbow Christmas by PoeticRainbow**](https://modrinth.com/mod/rainbow-christmas)
@@ -68,7 +73,6 @@ A list of mods in the pack is available here. Mods in bold were made and submitt
 - [**Text Placeholder API by Patbox**](https://modrinth.com/mod/placeholder-api)
 - [**Unbreakable by sylenthuntress**](https://modrinth.com/mod/durability-rework)
 - [**Universal Graves by Patbox**](https://modrinth.com/mod/universal-graves)
-- [**Villager Trading Plus by cassiancc**](https://modrinth.com/mod/trading+)
 - [YACL by isxander](https://modrinth.com/mod/yacl)
 
 ### Building and testing the mod pack

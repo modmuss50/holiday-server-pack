@@ -6,6 +6,8 @@
     "LevelStorageMixin"
   ],
   "client": [
+    "flightassistant.AirDataComputerMixin",
+    "flightassistant.ElytraStateControllerMixin",
     "ExperimentsScreenMixin",
     "ServerListMixin"
   ],

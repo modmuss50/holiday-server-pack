@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.List;
 
 @Mixin(ServerList.class)
-public class ServerListMixin {
+abstract class ServerListMixin {
 	@Shadow
 	@Final
 	private List<ServerInfo> servers;

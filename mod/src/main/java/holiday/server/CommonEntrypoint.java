@@ -1,8 +1,14 @@
 package holiday.server;
 
+import com.mojang.serialization.Codec;
 import holiday.server.block.HolidayServerBlocks;
 import holiday.server.item.HolidayServerItems;
+import it.unimi.dsi.fastutil.longs.LongOpenHashSet;
+import it.unimi.dsi.fastutil.longs.LongSet;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry;
+import net.fabricmc.fabric.api.attachment.v1.AttachmentType;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerConfigurationConnectionEvents;
@@ -14,22 +20,36 @@ import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.codec.PacketCodecs;
 import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.network.packet.Packet;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.resource.featuretoggle.FeatureFlags;
 import net.minecraft.resource.featuretoggle.FeatureSet;
 import net.minecraft.server.network.ServerConfigurationNetworkHandler;
 import net.minecraft.server.network.ServerPlayerConfigurationTask;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.ChunkPos;
+import net.minecraft.util.math.random.CheckedRandom;
+import net.minecraft.util.math.random.ChunkRandom;
+import net.minecraft.util.math.random.RandomSeed;
+import net.minecraft.world.SpawnHelper;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.chunk.WorldChunk;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import net.minecraft.world.GameRules;
 
 import java.net.URI;
 import java.util.Optional;
 import java.util.function.Consumer;
 
+@SuppressWarnings("UnstableApiUsage")
 public class CommonEntrypoint implements ModInitializer {
     private static final String MOD_ID = "holiday-server-mod";
+    private static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
     public static final String CURRENT_VERSION = FabricLoader.getInstance()
             .getModContainer(MOD_ID)
@@ -37,6 +57,15 @@ public class CommonEntrypoint implements ModInitializer {
             .getMetadata()
             .getVersion()
             .getFriendlyString();
+
+    private static final AttachmentType<Boolean> ANIMALS_REGENERATED_CHUNK_TYPE = AttachmentRegistry.create(
+            identifier("animals_regenerated"),
+            builder -> builder.initializer(() -> Boolean.FALSE).persistent(Codec.BOOL)
+    );
+
+    private static final int CHUNK_RESPAWN_RADIUS_BLOCKS = 2000;
+    private static final int SCAN_RADIUS_CHUNKS = 3;
+    private static final LongSet CHECKED_CHUNKS = new LongOpenHashSet();
 
     public static final FeatureSet FORCE_ENABLED_FEATURES = FeatureSet.of(FeatureFlags.MINECART_IMPROVEMENTS);
 
@@ -72,6 +101,52 @@ public class CommonEntrypoint implements ModInitializer {
             }
 
             context.networkHandler().completeTask(CheckVersionTask.KEY);
+        });
+
+        ServerTickEvents.END_WORLD_TICK.register(world -> {
+            if (world.getTime() % 20 != 0) {
+                return;
+            }
+
+            if (world.getRegistryKey() != World.OVERWORLD) {
+                return;
+            }
+
+            for (ServerPlayerEntity player : world.getPlayers()) {
+                // We only need to fix chunks within the initial world border
+                if (player.getX() < -CHUNK_RESPAWN_RADIUS_BLOCKS || player.getX() > CHUNK_RESPAWN_RADIUS_BLOCKS || player.getZ() < -CHUNK_RESPAWN_RADIUS_BLOCKS || player.getZ() > CHUNK_RESPAWN_RADIUS_BLOCKS) {
+                    continue;
+                }
+
+                for (int x = -SCAN_RADIUS_CHUNKS; x <= SCAN_RADIUS_CHUNKS; x++) {
+                    for (int z = -SCAN_RADIUS_CHUNKS; z <= SCAN_RADIUS_CHUNKS; z++) {
+                        long chunkLongPos = ChunkPos.toLong(player.getChunkPos().x + x, player.getChunkPos().z + z);
+
+                        if (!world.isChunkLoaded(chunkLongPos)) {
+                            continue;
+                        }
+
+                        if (!CHECKED_CHUNKS.add(chunkLongPos)) {
+                            continue;
+                        }
+
+                        ChunkPos chunkPos = new ChunkPos(chunkLongPos);
+                        WorldChunk chunk = world.getChunk(chunkPos.x, chunkPos.z);
+
+                        if (Boolean.TRUE.equals(chunk.getAttached(ANIMALS_REGENERATED_CHUNK_TYPE))) {
+                            continue;
+                        }
+
+                        RegistryEntry<Biome> registryEntry = world.getBiome(chunkPos.getStartPos().withY(world.getTopYInclusive()));
+                        ChunkRandom chunkRandom = new ChunkRandom(new CheckedRandom(RandomSeed.getSeed()));
+                        chunkRandom.setPopulationSeed(world.getSeed(), chunkPos.getStartX(), chunkPos.getStartZ());
+                        SpawnHelper.populateEntities(world, registryEntry, chunkPos, chunkRandom);
+                        chunk.setAttached(ANIMALS_REGENERATED_CHUNK_TYPE, true);
+
+                        LOGGER.debug("Regenerated animals in chunk {}", chunkPos);
+                    }
+                }
+            }
         });
     }
 
