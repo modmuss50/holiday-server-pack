@@ -13,7 +13,7 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:0.111.0+1.21.4"
 
     modImplementation "maven.modrinth:columns:1.12.0"
-    modImplementation "maven.modrinth:pyrite:0.15.7+1.21.4"
+    modImplementation "maven.modrinth:pyrite:0.15.9+1.21.4"
     modCompileOnly "maven.modrinth:flightassistant:2.3.4+mc1.21.2"
 }
 
